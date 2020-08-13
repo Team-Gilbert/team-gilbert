@@ -26,3 +26,10 @@ for i in *.conc; do echo "" >> $i; done
 
 #Concatenate all the files to the master one!
 cat *.conc > mycoplasma.fasta
+
+#remove tmp files
+rm -f *.line;   #removes linearized proteome fasta files. Comment this line if you want them in your folder
+rm -f *.conc   #removes concatenated sequence files. Comment this line if you want them in your folder
+rm -f *.result #removes fasta files with proteins of interest from every genome. Comment this line if you want them in your folder
+rm -f *.out  #removes blast output files. Comment this line if you want them in your folder
+rm -f *.awk  #removes subject headers files. Comment this line if you want them in your folder
