@@ -105,3 +105,4 @@ while read p; do rsync --copy-links --recursive --times --verbose $p ./; done < 
 - @pavlo
 - @Rajesh
 - @Semilogo
+
