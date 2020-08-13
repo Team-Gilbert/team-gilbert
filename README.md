@@ -47,15 +47,15 @@ Image Source: [@tbi_internship](https://twitter.com/tbi_internship)
 # Installation
 
 # Install Anaconda
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh  && sh Miniconda3-latest-Linux-x86_64.sh 
+* wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh  && sh Miniconda3-latest-Linux-x86_64.sh 
 
 # Create Conda environments
-conda create -n gilbert-phylo muscle mafft t-coffee dialign-tx prank iqtree clustalo clustalw
-conda create -n gilbert-prep blast prokka
+* conda create -n gilbert-phylo muscle mafft t-coffee dialign-tx prank iqtree clustalo clustalw
+* conda create -n gilbert-prep blast prokka
 
 # Download Mycoplasma Genome
-cat Mycoplasma_genomes.csv | awk -F ',' '{print $15}' | tail -n +2 | sed 's/ftp:/rsync:/g' > links.txt
-while read p; do rsync --copy-links --recursive --times --verbose $p ./; done < links.txt
+* cat Mycoplasma_genomes.csv | awk -F ',' '{print $15}' | tail -n +2 | sed 's/ftp:/rsync:/g' > links.txt
+* while read p; do rsync --copy-links --recursive --times --verbose $p ./; done < links.txt
 
 
 
