@@ -1,0 +1,40 @@
+IQ-TREE multicore version 1.6.1 for Linux 64-bit built Feb 16 2018
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    ip-172-31-11-198 (AVX2, FMA3, 0 GB RAM)
+Command: iqtree -s mycoplasma.mafft.fasta -t 2
+Seed:    962882 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu Aug 13 14:47:19 2020
+Kernel:  AVX+FMA - 1 threads (1 CPU cores detected)
+
+Reading alignment file mycoplasma.mafft.fasta ... Fasta format detected
+Alignment most likely contains protein sequences
+Alignment has 20 sequences with 4666 columns, 517 distinct patterns
+122 parsimony-informative, 447 singleton sites, 4097 constant sites
+            Gap/Ambiguity  Composition  p-value
+   1  2539         10.63%    passed    100.00%
+   2  35           53.96%    passed     17.31%
+   3  4235         53.45%    passed     19.83%
+   4  475          10.63%    passed    100.00%
+   5  4788         57.69%    failed      1.48%
+   6  8958         10.61%    passed    100.00%
+   7  A136         10.63%    passed    100.00%
+   8  AF1          53.32%    passed     25.24%
+   9  ATCC_23114   10.63%    passed    100.00%
+  10  FBG          10.63%    passed    100.00%
+  11  LBD-4        10.63%    passed    100.00%
+  12  PX1114       10.63%    passed    100.00%
+  13  SP10291      10.63%    passed    100.00%
+  14  SP2565        7.12%    passed     95.79%
+  15  SP3615       10.63%    passed    100.00%
+  16  SS10         10.63%    passed    100.00%
+  17  SS25         10.63%    passed    100.00%
+  18  Sprott       10.63%    passed    100.00%
+  19  TO0613       10.63%    passed    100.00%
+  20  VO31120      10.63%    passed    100.00%
+WARNING: 4 sequences contain more than 50% gaps/ambiguity
+****  TOTAL        19.25%  1 sequences failed composition chi2 test (p-value<5%; df=19)
+
+Reading input tree file 2 ...
+ERROR: File not found or incorrect input, pls check it again.2
