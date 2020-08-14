@@ -15,12 +15,10 @@ Image Source: [@tbi_internship](https://twitter.com/tbi_internship)
 
 The goal of this stage of the internship is to find biological data that can be analyzed with Linux based bioinformatics softwares, analyze it and provide visual representations of the results in a google drive folder.
 
-The goal of our project is to make basical phylogenetic analysis with mycoplasma strains. Not only we provide insoghts in evolution of published *Mycoplasma hominis* strains, but also try to aswer simple question - Do the choice of Multiple Sequence Alignment algorithm matters as long as your data is tidy and clean ?
+The goal of our project is to make basical phylogenetic analysis with mycoplasma strains. Not only we provide insoghts in evolution of published *Mycoplasma hominis* strains, but also try to answer simple question - Do the choice of Multiple Sequence Alignment algorithm matters as long as your data is tidy and clean ?
 
 <h1 align="center">Project: </h1>
 <h1 align="center"> Comparative Genomics of Mycoplasma hominis </h1>
-
-
 
 ## Pipeline
 
@@ -32,22 +30,61 @@ The goal of our project is to make basical phylogenetic analysis with mycoplasma
 Do the chioce of Multiple Sequence Alignment algorithm matters if the we have good aligned core genomic data? We also provide insights in evolution *Mycoplasma hominis* strains
  
 
+# Table of content
+- [Team-gilbert](#team-gilbert)
+  * [Project](#project)
+  * [Pipeline](#pipeline)
+  * [What we want to answer](#what-we-want-to-answer)
+- [Quick start](#quick-start)
+  * [Dependencies](#dependencies)
+  * [Installation](#installation)
+    + [Install Anaconda](#install-anaconda)
+    + [Create Conda environments](#create-conda-environments)
+    + [Installation of T-Coffee](#installation-of-t-coffee)
+    + [Get the genbank_to_fasta script](#get-the-genbank-to-fasta-script)
+    + [R packages installation](#r-packages-installation)
+- [Usage](#usage)
+  * [Step 1](#step-1)
+  * [Step 2](#step-2)
+  * [Step 2.5 (optional)](#step-25--optional-)
+  * [Step 3](#step-3)
+  * [Step 3.5 (optional)](#step-35--optional-)
+  * [Step 4](#step-4)
+  * [Step 5](#step-5)
+  * [Step 6](#step-6)
+- [Case study of Mycoplasma genomes](#case-study-of-mycoplasma-genomes)
+  * [Goal](#goal)
+  * [Flowchart of the project](#flowchart-of-the-project)
+  * [Manual genome filtering and extraction](#manual-genome-filtering-and-extraction)
+  * [Genome download and proteome extraction](#genome-download-and-proteome-extraction)
+  * [Gather homologs of the curated set of proteins using BLAST against selected genomes](#gather-homologs-of-the-curated-set-of-proteins-using-blast-against-selected-genomes)
+  * [Sequence extraction and concatenation](#sequence-extraction-and-concatenation)
+  * [Phylogenetic reconstruction](#phylogenetic-reconstruction)
+  * [Tree comparison](#tree-comparison)
+- [TEAM MEMBERS](#team-members)
+
+
+
 # Quick start
 
 ## Dependencies
 - Conda (Anaconda/miniconda)
 - T-Coffee package
 - Genbank_to_fasta script from [Rocap lab](https://rocaplab.ocean.washington.edu/tools/genbank_to_fasta/)
+- PareTree.jar script (provided in the repo)
+- [R](https://www.r-project.org) + [Rstudio](https://rstudio.com/products/rstudio/download/) for tree comparison
 - Linux enviroment with 
   - awk 
   - sed 
   - parallel
   - unzip
+  - java 
 
 
 ## Installation
 
-Majority of packaged are installed via conda command
+Majority of packaged are installed via conda command.
+To satisfy linux dependencies please use standard package manager for your OS. 
 
 ### Install Anaconda
 `wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh  && sh Miniconda3-latest-Linux-x86_64.sh` 
@@ -63,11 +100,11 @@ Majority of packaged are installed via conda command
 ### Get the genbank_to_fasta script
 `wget https://rocaplab.ocean.washington.edu/files/genbank_to_fasta_v1.2.zip && unzip genbank_to_fasta_v1.2.zip `
 
-
-
-### Download Mycoplasma Genome
-* cat Mycoplasma_genomes.csv | awk -F ',' '{print $15}' | tail -n +2 | sed 's/ftp:/rsync:/g' > links.txt
-* while read p; do rsync --copy-links --recursive --times --verbose $p ./; done < links.txt
+### R packages installation
+In order to visualize tree comparison we are relying on tanglegram library within R language. To run subsequent analysis properly you need several libraries to be installed
+```R
+install.packages("dendextend", "ape", "phylogram", "dplyr")
+```
 
 
 # Usage
@@ -141,7 +178,18 @@ cd ..
 mkdir t-coffee-meta && cd t-coffee-meta
 t_coffee in-file.fasta -mode mcoffee in-file.fasta
 ```
-#Case study of Mycoplasma genomes
+## Step 6
+After runnnig the phylogenetic software the last step is pairwise comparison of computed trees. This is done via "tanglegram" algorithm.
+1. But the first step is to delete branch lenghts from treeefiles. We don't really need step form the topology comparison step, but if they are in the file, two of the best approaches for comparison (step1wise and ste2wise) are unavailable. Therefore we decided to delete  branch lenghts.
+This is done via [PareTree script](http://emmahodcroft.com/PareTree.html).
+`ls *.treefile | parallel java -jar PareTree1.0.2.jar -f {} -topo`
+
+2. Second step is R script running for tree comparison. There is no automation here, so you need to open the script in Rstudio and run every comparison manually. The only thing you need to alter is filenames in `read.tree` function and names of the trees in `tanglegram` function.
+
+After run of an algorithm , you can export generated plots from Rstudio.
+
+
+# Case study of Mycoplasma genomes
 
 ## Goal
 We used the abive mentioned pipeline to gains insights about evolution of *Mycoplasma hominis* strains. And, hence, the genomes of these bacteria the small, we tried to identify core gene set for successful phyllogenetic tree reconstruction, using those, identified by Safa Boujemaa et al. (in this [article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6173709/)). Not only we tried to refine the set of genes, but also see if the choice of Multiple Sequence Alignment algorithm at the first stage of phyllogeny recostruction really matters
@@ -274,7 +322,7 @@ Results of the mafft are still different from othe algorithms. Worth noting that
 ![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/clustao-dialign.png)
 
 
-**So, the choice of the MSA algorithm matters. We have remain a little bit of noise in our data and those algorithms interpreted this noise differently. So data cleaning is the most important step in phylogenetic reconstruction, as if there a little bit of noise it can be interpreted differently. Popular MSA tools in out dataset gave similar, yet different results.**
+**So, the choice of the MSA algorithm matters. We have remain a little bit of noise in our data and those algorithms interpreted this noise differently. So data cleaning is the most important step in phylogenetic reconstruction, as if there a little bit of noise it can be interpreted differently. Even popular MSA tools in out dataset gave similar, yet different results.**
 
 # TEAM MEMBERS
 - @Ayodeji
@@ -287,14 +335,3 @@ Results of the mafft are still different from othe algorithms. Worth noting that
 - @pavlo
 - @Rajesh
 - @Semilogo
-
-# For participants
-
-## GOALS FOR STAGE 1
-- Form a group of 5 - 10 participants
-- Identify a project
-- Download dependency softwares
-- Get genomic data
-- Analyse data using softwares
-- Create phylogenetic trees
-- Compare trees
