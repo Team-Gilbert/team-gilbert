@@ -1,0 +1,18 @@
+IQ-TREE multicore version 1.6.1 for Linux 64-bit built Feb 16 2018
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    ip-172-31-11-198 (AVX2, FMA3, 0 GB RAM)
+Command: iqtree -s mycoplasma.fasta
+Seed:    190278 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu Aug 13 13:27:15 2020
+Kernel:  AVX+FMA - 1 threads (1 CPU cores detected)
+
+Reading alignment file mycoplasma.fasta ... Fasta format detected
+ERROR: Sequence 35 contains not enough characters (2148)
+ERROR: Sequence 4235 contains not enough characters (2172)
+ERROR: Sequence 4788 contains not enough characters (1974)
+ERROR: Sequence 8958 contains too many characters (4171)
+ERROR: Sequence AF1 contains not enough characters (2178)
+ERROR: Sequence SP2565 contains too many characters (4334)
+ERROR: 

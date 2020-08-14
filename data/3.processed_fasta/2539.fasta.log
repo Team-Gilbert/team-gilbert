@@ -1,0 +1,18 @@
+IQ-TREE multicore version 1.6.1 for Linux 64-bit built Feb 16 2018
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    ip-172-31-11-198 (AVX2, FMA3, 0 GB RAM)
+Command: iqtree -s 2539.fasta
+Seed:    53875 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu Aug 13 13:25:12 2020
+Kernel:  AVX+FMA - 1 threads (1 CPU cores detected)
+
+Reading alignment file 2539.fasta ... Fasta format detected
+ERROR: Sequence C1937_02225 contains too many characters (648)
+ERROR: Sequence C1937_02810 contains not enough characters (351)
+ERROR: Sequence C1937_02030 contains too many characters (942)
+ERROR: Sequence C1937_03095 contains not enough characters (335)
+ERROR: Sequence C1937_02245 contains too many characters (915)
+ERROR: Sequence C1937_02080 contains too many characters (582)
+ERROR: 
