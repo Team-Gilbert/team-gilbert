@@ -250,7 +250,31 @@ As the branch length aclually indicates the number of mutations, that were intro
 Subsequent `*.treefile` files were extracted from folders and compared with tanglegram algorithm.
 
 ## Tree comparison
-TO-DO
+
+The folder 'data/6.tree_comparisons' holding all the pirwise comparisons of the trees
+1. Clustalw is actually the oldest algorithm. It's results it different from every other:
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/clustaw-mafft.png)
+2. Clustal Omega is a rethinked ClustalW. However it's results aren't much more similar compared to other algorithms:
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/clustao-mafft.png)
+However the ovarall result is better
+3. Muscle is the most widely used algorithm for middle set of genes to align:
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/muscle-mafft.png)
+Interesting thing about the trees geenrates by this algorithm is thas they are 'upside-down'. As the other programs think that the most "evolutionary modified" organism is the opposite one.
+However great similar results with `PRANK`
+4. Mafft is the most widely used algoritm for large datasets. It is very fast. 
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/mafft-mcoffee.png)
+Results of the mafft are still different from othe algorithms. Worth noting that the mafft-tcoffee comparison is perfectly similar!
+5. T-Coffee claims to score the alignment, but it's gives not the best alignments. In our case it's results were not that far fom muscle and mafft/
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/muscle-tcoffee.png)
+6. M-Coffee claims to combine the results of many MSA algoritms. It's result is different from any other algoritm/
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/mcoffee-prank.png)
+7. PRANK is an algorithm that 'knows phylogeny'. It's results are far different from any other algoritm
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/prank-dialign.png)
+8. The we can say about dialign. Very different results
+![Workflow](https://github.com/Team-Gilbert/team-gilbert/blob/master/images/clustao-dialign.png)
+
+
+**So, the choice of the MSA algorithm matters. We have remain a little bit of noise in our data and those algorithms interpreted this noise differently. So data cleaning is the most important step in phylogenetic reconstruction, as if there a little bit of noise it can be interpreted differently. Popular MSA tools in out dataset gave similar, yet different results.**
 
 # TEAM MEMBERS
 - @Ayodeji
